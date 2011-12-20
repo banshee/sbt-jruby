@@ -1,0 +1,9 @@
+// By default, the plugin doesn't export its settings.  Add these lines to your .sbt file:
+seq(SbtJRuby.SbtJRubySettings.settings: _*)
+
+// Specify a ruby file to run
+jrubyFile in compile := file("foobar.rb")
+
+// Not required, but this is how you make compiling dependent on the jruby task
+compile <<= (compile in Compile) dependsOn jruby
+
