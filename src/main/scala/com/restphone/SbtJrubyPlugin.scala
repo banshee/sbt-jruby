@@ -29,6 +29,7 @@ object SbtJRuby extends Plugin {
   // Call jruby files, passing the base directory as the first argument
   def runJRubyFile(localRubyFile: File, baseDir: File) = {
     val rf = (baseDir / localRubyFile.toString).toString
-    org.jruby.Main.main(List(rf, baseDir.toString).toArray[String])
+    com.restphone.ScriptWrapper.run(rf)
+    //    org.jruby.Main.main(List(rf, baseDir.toString).toArray[String])
   }
 }
