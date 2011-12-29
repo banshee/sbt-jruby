@@ -1,4 +1,4 @@
-
+package com.restphone;
 
 import org.jruby.Ruby;
 import org.jruby.RubyObject;
