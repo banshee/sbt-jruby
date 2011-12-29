@@ -11,4 +11,8 @@ libraryDependencies ++= Seq(
   "org.mirah" % "mirah-complete" % "0.0.7"
 )
 
-unmanagedBase <<= baseDirectory { base => base / "lib" }
+// unmanagedBase <<= baseDirectory { base => base / "lib" }
+
+// unmanagedJars in Compile += file("lib/yetch.jar")
+
+unmanagedResourceDirectories in Compile <+= baseDirectory(_ / "lib")
