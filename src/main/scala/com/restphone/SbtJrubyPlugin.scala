@@ -29,7 +29,13 @@ object SbtJRuby extends Plugin {
   // Call jruby files, passing the base directory as the first argument
   def runJRubyFile(localRubyFile: File, baseDir: File) = {
     val rf = (baseDir / localRubyFile.toString).toString
-    com.restphone.ScriptWrapper.run(rf)
-    //    org.jruby.Main.main(List(rf, baseDir.toString).toArray[String])
+    
+    // this is a workaround for an sbt/jruby classloader issue.  Without it, you'll get this error
+    // if you do a require 'java' in jruby:
+    //   org.jruby.exceptions.RaiseException: (LoadError) no such file to load -- builtin/javasupport
+    //
+    // Warning:  this workaround is an ugly hack that probably has unknown side effects.
+    Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader())
+    com.restphone.ScriptWrapper.run(rf, "fnord")
   }
 }

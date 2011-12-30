@@ -14,7 +14,8 @@ public class ScriptWrapper extends RubyObject  {
 
     static {
         String source = new StringBuilder("class ScriptWrapper\n" +
-            "  def self.run file\n" +
+            "  java_signature 'void run(String, String)'\n" +
+            "  def self.run file, arg\n" +
             "    load file\n" +
             "  end\n" +
             "end\n" +
@@ -62,10 +63,11 @@ public class ScriptWrapper extends RubyObject  {
     }
 
     
-    public static Object run(Object file) {
+    public static void run(String file, String arg) {
         IRubyObject ruby_file = JavaUtil.convertJavaToRuby(__ruby__, file);
-        IRubyObject ruby_result = RuntimeHelpers.invoke(__ruby__.getCurrentContext(), __metaclass__, "run", ruby_file);
-        return (Object)ruby_result.toJava(Object.class);
+        IRubyObject ruby_arg = JavaUtil.convertJavaToRuby(__ruby__, arg);
+        IRubyObject ruby_result = RuntimeHelpers.invoke(__ruby__.getCurrentContext(), __metaclass__, "run", ruby_file, ruby_arg);
+        return;
 
     }
 
