@@ -7,7 +7,7 @@ version := "0.2"
 organization := "com.restphone"
 
 libraryDependencies ++= Seq(
-  "org.jruby" % "jruby-complete" % "1.6.5"
+  "org.jruby" % "jruby-complete" % "1.6.5.1"
 )
 
 // unmanagedBase <<= baseDirectory { base => base / "lib" }
