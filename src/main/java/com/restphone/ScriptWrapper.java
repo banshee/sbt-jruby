@@ -16,6 +16,8 @@ public class ScriptWrapper extends RubyObject  {
         String source = new StringBuilder("class ScriptWrapper\n" +
             "#  java_signature 'void run(String, String)'\n" +
             "  def self.run file, arg\n" +
+            "    ARGV.clear\n" +
+            "    ARGV << arg\n" +
             "    load file\n" +
             "  end\n" +
             "end\n" +

@@ -36,6 +36,6 @@ object SbtJRuby extends Plugin {
     //
     // Warning:  this workaround is an ugly hack that probably has unknown side effects.
     Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader())
-    com.restphone.ScriptWrapper.run(rf, "fnord")
+    com.restphone.ScriptWrapper.run(rf, baseDir.toString)
   }
 }
